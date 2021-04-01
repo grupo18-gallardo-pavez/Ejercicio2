@@ -1,0 +1,59 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#define N 100
+
+using namespace std;
+
+void libroNotas(int alum[N]);
+float prom(int alum[N]);
+float desviacion(int alum[N]);
+int moda(int alum[N]);
+//--------------------------------------------------------------
+int main() {
+  int a[N];
+  libroNotas(a);
+  cout << "Media Aritmetica = " << prom(a) <<endl;
+  cout << "Desviacion Estandar = " << desviacion(a) << endl ;
+  cout << "Varianza = " << pow(desviacion(a),2) << endl ;
+  cout << "Moda = " << moda(a) << endl ;
+}
+//---------------------------------------------------
+void libroNotas(int alum[N]){
+  int sum=0;
+  float prom;
+ srand (time(NULL));
+ for ( int i=0; i < N; i++) {
+  alum[i] = 1 + rand() % (7);
+  cout <<"Nota "<< setw(3)<<i+1  << " = "<< alum[i] << endl;
+   }
+}
+
+float prom(int alum[N]){
+  float sum=0;
+  for ( int i=1; i < N; i++) {
+    sum += alum[i];
+}
+return sum/N;
+}
+
+float desviacion(int alum[N]){
+  float sum=0;
+  for ( int i=1; i < N; i++) {
+    sum += pow(alum[i] - prom(alum),2);
+  }
+  return pow(sum/N,0.5);
+}
+
+int moda(int alum[N]){
+	int maxi=0,max=-1,aux[7]={0,0,0,0,0,0,0};
+	for(int j=0;j<7;j++){
+		for(int i=0;i<N;i++){
+			if (alum[i]==(j+1))
+				aux[j]++;}}
+	for(int k=0;k<7;k++){
+		if(aux[k]>max){
+			max=aux[k];
+			maxi=k;}}
+	return maxi+1;
+}

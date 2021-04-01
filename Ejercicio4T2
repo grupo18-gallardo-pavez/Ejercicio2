@@ -1,0 +1,72 @@
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#define N 24
+using namespace std;
+
+void llenaLista( int arry[N]);// se llena un  arreglo
+int buscarmax (int arry[N]); // busca el numero mayor
+int buscarmin (int arry[N]); // busca el numero minimo
+float prom(int arry[N]);//promedio
+void resultados(int (*prf1)(int arry[N]),int (*prf2)(int arry[N]),float (*prf3)(int arry[N]),int arry[N]);
+// ------------------------------------------------------------------------------------------------------------------------
+int main() {
+  int a[N];
+  llenaLista(a);
+  resultados(buscarmax,buscarmin,prom,a); //Paso de funciones como parámetros
+  return 0;
+}
+//--------------------------------------------------------------------------------------------------------------------
+// se llena el arreglo
+void llenaLista(int arry[N]){
+  srand(time(NULL));
+  for ( int i=0; i < N; i++){
+    arry[i] = -10 + rand() % (49);
+  }
+}
+
+// busca el numero mayor
+int buscarmax (int arry[N]){
+  int numh=-20,i,k;
+  for (i=0; i < N; i++){
+   if (numh < arry[i] ) {
+    numh = arry[i];
+    k = i;
+  }
+ }
+  return k;
+}
+
+// busca el numero minimo
+int buscarmin (int arry[N]){
+  int numl=70,i,q;
+  for (i=0; i < N; i++){
+    if (numl > arry[i]){
+     numl = arry[i];
+     q = i;
+    }
+  }
+return q;
+}
+
+//promedio
+float prom(int arry[N]){
+  float sum=0;
+  for (int i=0; i < N; i++)
+    sum+=arry[i];
+  return sum/N;
+}
+void resultados(int (*prf1)(int arry[N]),int (*prf2)(int arry[N]),float (*prf3)(int arry[N]),int arry[N]){
+  char s=248;
+  cout << "\n-----------------------------------------------------------\n" ;
+  cout <<  "----------------- Temperaturas del dia --------------------\n";
+  cout <<  "-----------------------------------------------------------\n\n" ;
+  for(int i=0;i<N;i++)
+    cout << setw(15)<< "Temp "<< setw(2) << i+1 << " = " << setw(3) << arry[i] << s << " Celsius\n";
+    cout <<  "\n-------------------------------------------------------------\n" ;
+    cout <<  "------------ Variables estadisticas de temperatura ----------\n" ;
+    cout <<  "-------------------------------------------------------------\n\n" ;
+    cout <<"          La temperatura maxima fue de "  << arry[prf1(arry)] << s <<" Celsius a las " << prf1(arry)+1<< " hrs\n" ;
+    cout <<"          La temperatura minima fue de "  << arry[prf2(arry)] << s  <<" Celsius a las " << prf2(arry)+1<< " hrs\n" ;
+    cout <<"          La temperatura promedio fue de "<<prf3(arry)<< s << " Celsius\n";
+}

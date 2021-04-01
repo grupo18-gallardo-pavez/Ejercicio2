@@ -1,0 +1,67 @@
+#include <iostream>
+using namespace std;
+
+// se declaran la clase
+class worker {
+public:
+  int cla = 0;
+  int cat = 0;
+  int ant = 0;
+  float sal = 0;
+  int res= 0;
+  void ini_worker();
+  void selec_worker();
+  void fin_worker();
+};
+//--------------------------------------------------------------------------
+int main(){
+  char aux;
+  worker worker1;
+do{
+  worker1.ini_worker();
+  worker1.selec_worker();
+  worker1.fin_worker();
+cout << "\nDesea continuar [s/n] ";
+cin >> aux;
+}while(aux == 's');
+
+return 0;
+}
+//--------------------------------------------------------------------------
+void worker::ini_worker(){
+  cout << "\n------------Seleccion de personal-----------\n\n";
+  cout <<"   Ingrese clave del trabajador:     " ;
+  cin >> cla;
+  cout <<    "\n";
+
+  cout <<"   Ingrese categoria del trabajador:  " ;
+  cin >> cat;
+  cout <<    "\n";
+
+ cout <<"   Ingrese antiguedad del trabajador: " ;
+ cin >> ant;
+cout <<    "\n";
+
+ cout <<"   Ingrese salario del trabajador: " ;
+ cin >> sal;
+ cout <<    "\n";
+}
+
+void worker::fin_worker(){
+  cla = 0;
+  cat = 0;
+  ant = 0;
+  sal = 0;
+  res = 0;
+}
+
+void worker::selec_worker(){
+  if (((cat == 3) || (cat == 4)) && (ant > 5))
+       res = 1;
+
+  if ((cat ==2 ) && (ant > 7))
+      res = 1;
+
+ if (res == 1) cout <<"El trabajador reune los requisitos" << "\n\n";
+ else  cout <<"El trabajador NO reune los requisitos\n" << endl ;
+}

@@ -1,0 +1,16 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+  char aux;
+  int s;
+  do{
+    cout <<"\n ---------------Temperatura------------\n\n";
+    cout <<"Ingrese el numero de sonidos por minuto: " ;
+    cin >> s;
+    cout  << "\nLa temperatura es de " << (s/(4) + 40 - 32)/1.8 << " grados celsius\n" ;
+    cout  << "\nDesea continuar [s/n]";
+    cin >> aux;
+  }while (aux=='s');
+return 0;
+}

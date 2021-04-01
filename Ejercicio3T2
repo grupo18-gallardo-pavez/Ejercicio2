@@ -1,0 +1,42 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#define N 256
+using namespace std;
+
+/* function to generate and return random numbers */
+void get_Random(int r[N]);
+double to_Binario(int numero);
+//-----------------------------------------------------------------------------
+int main(){
+    int k,array[N];
+    get_Random(array);
+    cout << "Numero   "  << "   Decimal   " << "   Binario" << endl ;
+    for(k=0;k<N;k++){
+      cout << fixed << setprecision(0) ;
+      cout << setw(5)<< k+1 << "   ->" << setw(5) << array[k] << "    >>> " << setw(13) << to_Binario(array[k]) << endl;
+    }
+
+   return 0;
+}
+//-----------------------------------------------------------------------------
+/* function to generate and return random numbers */
+void get_Random(int r[N]) {
+    int i;
+/* set the seed */
+    srand( (unsigned)time(NULL));
+    for (i = 0; i < N; ++i)
+        r[i] = rand() % 256;
+}
+
+double to_Binario(int numero){
+    double binario=0;
+    int exp=0, digito;
+    while(numero/2!=0){
+         digito = numero % 2;
+         binario = binario + digito * pow(10.0,exp);
+         exp++;
+         numero=numero/2;
+    }
+   return binario + numero * pow(10.0,exp);
+}
